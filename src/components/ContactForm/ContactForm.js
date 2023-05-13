@@ -1,10 +1,9 @@
 import { useState } from 'react';
-
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 
-const ContactForm = () => {
+export const ContactForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -27,7 +26,8 @@ const ContactForm = () => {
 
   const submitContact = e => {
     e.preventDefault();
-    // this.props.onSubmit(name, number);
+    onSubmit({ name, number });
+
     reset();
   };
 
@@ -72,8 +72,6 @@ const ContactForm = () => {
     </form>
   );
 };
-
-export default ContactForm;
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
